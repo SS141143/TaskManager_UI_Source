@@ -1,0 +1,63 @@
+<div style="padding:20px">
+    <div class="form-group row">
+      <label class="mx-sm-2 col-form-label">Task:</label>
+      <div class="col-md-5">
+          <input name="TaskName" [(ngModel)] = "taskNameSearch" class="form-control">
+      </div>
+      <label class="mx-sm-2 col-form-label">Parent Task:</label>
+      <div class="col-md-5">
+        <input name="Parent_Task" [(ngModel)] = "parent_TaskSearch" class="form-control">
+      </div>
+    </div>
+    <div class="form-group row">
+        <label class="mx-sm-1 col-form-label">Priority From:</label>
+        <div class="mx-sm-1">
+            <input name="PriorityFrom" [(ngModel)] = "priority_FromSearch" class="form-control">
+        </div>
+        <label class="mx-sm-1 col-form-label">Priority To:</label>
+        <div class="mx-sm-2">
+            <input name="PriorityTo" [(ngModel)] = "priority_ToSearch" class="form-control">
+        </div>
+        <label class="mx-sm-1 col-form-label">Start Date:</label>
+        <div class="mx-sm-2">
+            <input name="Start_Date" [(ngModel)] = "start_DateSearch" class="form-control">
+        </div>
+        <label class="mx-sm-1 col-form-label">End Date:</label>
+        <div class="mx-sm-2">
+          <input name="End_Date" [(ngModel)] = "end_DateSearch" class="form-control">
+        </div>
+        <div class="mx-sm-2">
+            <button type="button" (click) = "filterItem()" class="btn btn-primary">Search</button>
+        </div>
+    </div>
+    <hr style="border:1px dotted lightslategray">
+    <div class="form-row table table-dark" *ngFor="let t of taskService.list">
+      <div class="form-group col-md-2">
+        <label>Task</label><br>
+        {{t.TaskName}}
+      </div>
+      <div class="form-group col-md-2">
+          <label>Parent</label><br>
+          {{t.ParentTaskName}}
+      </div>
+      <div class="form-group col-md-2">
+          <label>Priority</label><br>
+          {{t.Priority}}
+      </div>
+      <div class="form-group col-md-2">
+          <label>Start</label><br>
+          {{t.Start_Date|date:'MM/dd/yyyy'}}
+      </div>
+      <div class="form-group col-md-2">
+          <label>End</label><br>
+          {{t.End_Date|date:'MM/dd/yyyy'}}
+      </div>
+      <div class="form-group col-md-2">
+          <label></label>
+          <div>
+            <button type="button" (click)="editTask(t)" class="btn btn-primary">Edit</button>&nbsp;
+            <button type="button" (click)="deleteTask(t.Task_ID, t.Parent_ID)" class="btn btn-primary">End Task</button>
+          </div>
+      </div>
+    </div>    
+</div>  
